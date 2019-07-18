@@ -26,19 +26,7 @@
 
     <script src="analytics-service.js"></script>
     <script>
-      makeRequest();
-
-      async function makeRequest() {
-        const result = await postDeviceInfo({
-          endpoint: "http://localhost:8000/",
-          //endpoint: "https://analytics.codegewerk.de/",
-          fetchMode: "cors"
-        });
-
-        console.log(result);
-
-        return result;
-      }
+      new AnalyticsService({ endpoint: "http://localhost:8000/" }).sendData();
     </script>
   </body>
 </html>

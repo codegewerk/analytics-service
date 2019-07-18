@@ -1,21 +1,23 @@
-async function postDeviceInfo({ endpoint, fetchMode } = {}) {
+function AnalyticsService({ endpoint, fetchMode } = {}) {
   endpoint = endpoint || "https://analytics.codegewerk.de/";
   fetchMode = fetchMode || "cors";
 
-  console.log(endpoint, fetchMode);
+  this.sendData = async function() {
+    console.log("endpoint: ", endpoint, ", fetch-mode: ", fetchMode);
 
-  let data = { platform: navigator.platform, userAgent: navigator.userAgent };
+    let data = { platform: navigator.platform, userAgent: navigator.userAgent };
 
-  return await fetch(endpoint, {
-    method: "POST",
-    mode: fetchMode,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-}
+    const result = await fetch(endpoint, {
+      method: "POST",
+      mode: fetchMode,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
 
-function setEndpoint() {
-  return location.protocol + "//" + location.host + "/";
+    console.log(result);
+
+    return result;
+  };
 }
