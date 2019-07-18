@@ -1,12 +1,12 @@
-const endpoint = env.ENDPOINT_URL;
-const fetchMode = env.FETCH_MODE || "same-origin";
+async function postDeviceInfo({ endpoint, fetchMode } = {}) {
+  endpoint = endpoint || "https://analytics.codegewerk.de/";
+  fetchMode = fetchMode || "cors";
 
-async function postDeviceInfo() {
-  const url = endpoint + "server/";
+  console.log(endpoint, fetchMode);
 
   let data = { platform: navigator.platform, userAgent: navigator.userAgent };
 
-  return await fetch(url, {
+  return await fetch(endpoint, {
     method: "POST",
     mode: fetchMode,
     headers: {
