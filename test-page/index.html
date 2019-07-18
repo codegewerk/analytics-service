@@ -24,11 +24,11 @@
       </h2>
     </div>
 
-    <script src="server.js"></script>
+    <script src="analytics-service.js"></script>
     <script>
       postDeviceInfo({
-        endpoint: "http://localhost:8000/server/",
-        fetchMode: "same-origin"
+        endpoint: "http://localhost:8000/",
+        fetchMode: "no-cors"
       });
     </script>
   </body>

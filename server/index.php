@@ -2,8 +2,8 @@
 
 // example: https://gist.github.com/james2doyle/33794328675a6c88edd6
 
-if (file_exists('../env.php')) {
-    include '../env.php';
+if (file_exists('env.php')) {
+    include 'env.php';
 }
 
 $http_referer = $_SERVER['HTTP_REFERER'];
