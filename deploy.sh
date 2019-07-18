@@ -14,7 +14,7 @@ scp -r $TEMP_DIR/ $SSH_USERNAME_HOST:
 rm -R $TEMP_DIR/
 
 # get existing data
-ssh $SSH_USERNAME_HOST cp $APP_DIR_NAME/data.csv $TEMP_DIR/server/
+ssh $SSH_USERNAME_HOST cp $APP_DIR_NAME/data.csv $TEMP_DIR/
 
 ssh $SSH_USERNAME_HOST rm -R $APP_DIR_NAME/
 ssh $SSH_USERNAME_HOST mv $TEMP_DIR/ $APP_DIR_NAME/
