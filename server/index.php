@@ -12,6 +12,9 @@ $allowed_calling_url = getenv('ALLOWED_CALLING_URL');
 if ($http_referer) {
     if (substr($http_referer, 0, strlen($allowed_calling_url)) === $allowed_calling_url) {
 
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Headers: Content-Type");
+
         $post_data = file_get_contents('php://input');
 
         $decoded_post_data = (array) json_decode($post_data);

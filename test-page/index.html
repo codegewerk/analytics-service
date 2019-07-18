@@ -26,10 +26,18 @@
 
     <script src="analytics-service.js"></script>
     <script>
-      postDeviceInfo({
-        endpoint: "http://localhost:8000/",
-        fetchMode: "no-cors"
-      });
+      makeRequest();
+
+      async function makeRequest() {
+        const result = await postDeviceInfo({
+          endpoint: "http://localhost:8000/",
+          fetchMode: "cors"
+        });
+
+        console.log(result);
+
+        return result;
+      }
     </script>
   </body>
 </html>
