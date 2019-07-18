@@ -10,15 +10,17 @@ if (in_array($httpOrigin, $authorizedOrigins)) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Content-Type");
 
-    $post_data = file_get_contents('php://input');
-
-    $decoded_post_data = (array) json_decode($post_data);
-    print_r($decoded_post_data);
-
-    file_put_contents('data.csv', dataToCsvLine($decoded_post_data), FILE_APPEND | LOCK_EX);
-
     http_response_code(200);
+    print_r("REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD'] . "\n");
 
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        $postData = file_get_contents('php://input');
+
+        $decodedPostData = (array) json_decode($postData);
+        print_r($decodedPostData);
+
+        file_put_contents('data.csv', dataToCsvLine($decodedPostData), FILE_APPEND | LOCK_EX);
+    }
 }
 
 http_response_code(403);
