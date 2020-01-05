@@ -53,7 +53,6 @@ function processInformation($data)
 function dataToCsvLine($dataArray)
 {
     $csvString = "\"";
-
     foreach ($dataArray as $value) {
         $csvString = $csvString . $value . "\", \"";
     }
