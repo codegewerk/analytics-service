@@ -34,9 +34,20 @@ function processData($data, $httpOrigin)
         $httpOrigin,
         $data['platform'],
         $data['userAgent'],
+        processInformation($data),
     ];
 
     return dataToCsvLine($dataArray);
+}
+
+function processInformation($data)
+{
+    $information = "";
+    foreach ($data['info'] as $key => $value) {
+        $information = $information . $key . ": " . $value . ", ";
+    }
+
+    return substr($information, 0, -2);
 }
 
 function dataToCsvLine($dataArray)

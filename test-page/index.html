@@ -27,6 +27,10 @@
     <script src="analytics-service.js"></script>
     <script>
       new AnalyticsService({ endpoint: "http://localhost:8000/" }).sendData();
+      new AnalyticsService({ endpoint: "http://localhost:8000/" }).sendData({
+        testKey: "test value",
+        testKey2: "test value 2"
+      });
     </script>
   </body>
 </html>
