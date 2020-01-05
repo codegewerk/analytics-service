@@ -19,15 +19,43 @@ if (in_array($httpOrigin, $authorizedOrigins)) {
         $decodedPostData = (array) json_decode($postData);
         print_r($decodedPostData);
 
-        file_put_contents('data.csv', dataToCsvLine($decodedPostData, $httpOrigin), FILE_APPEND | LOCK_EX);
+        file_put_contents('data.csv', processData($decodedPostData, $httpOrigin), FILE_APPEND | LOCK_EX);
     }
 }
 
 http_response_code(403);
 
-function dataToCsvLine($data, $httpOrigin)
+function processData($data, $httpOrigin)
 {
     $now = new DateTime();
 
-    return "\"" . $now->format('Y-m-d, H:i:s') . "\", \"" . $httpOrigin . "\", \"" . $data['platform'] . "\", \"" . $data['userAgent'] . "\"\n";
+    $dataArray = [
+        $now->format('Y-m-d, H:i:s'),
+        $httpOrigin,
+        $data['platform'],
+        $data['userAgent'],
+        processInformation($data),
+    ];
+
+    return dataToCsvLine($dataArray);
+}
+
+function processInformation($data)
+{
+    $information = "";
+    foreach ($data['info'] as $key => $value) {
+        $information = $information . $key . ": " . $value . ", ";
+    }
+
+    return substr($information, 0, -2);
+}
+
+function dataToCsvLine($dataArray)
+{
+    $csvString = "\"";
+    foreach ($dataArray as $value) {
+        $csvString = $csvString . $value . "\", \"";
+    }
+
+    return substr($csvString, 0, -3) . "\n";
 }
