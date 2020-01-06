@@ -1,0 +1,35 @@
+{
+  "name": "analytics-service",
+  "version": "1.0.0",
+  "description": "Small analytics service that allows to collect information about the visitors of a web page it is included.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass --source-map true dashboard/src/index.scss dashboard/public/assets/theme.css",
+    "sass:prod": "rm -f dashboard/public/assets/theme.css.map && node-sass --output-style compressed dashboard/src/index.scss dashboard/public/assets/theme.css",
+    "css:prefix": "postcss dashboard/public/assets/theme.css --use autoprefixer --replace --no-map",
+    "css": "npm run sass:prod && npm run css:prefix",
+    "js": "webpack --mode=development --devtool source-map --progress --config webpack.config.js",
+    "js:prod": "rm -f dashboard/public/assets/theme.js.map && webpack --mode=production --progress --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codegewerk/analytics-service.git"
+  },
+  "author": "Philipp Bischoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codegewerk/analytics-service/issues"
+  },
+  "homepage": "https://github.com/codegewerk/analytics-service#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.7.3",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "node-sass": "^4.13.0",
+    "popper.js": "^1.16.0",
+    "postcss-cli": "^6.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

@@ -1,3 +1,3 @@
 #! /bin/bash
-cd dashboard/
+cd dashboard/public/
 php -S localhost:8002
