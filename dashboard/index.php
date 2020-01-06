@@ -7,16 +7,14 @@ if (!isset($_SESSION['is_logged_in'])) {
     exit;
 }
 
-?>
+include 'Template.php';
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <h2>Login</h2>
-        <p>Hello, you are logged in!</p>
-        <a href="/logout">Logout</a>
-    </body>
-</html>
+$title = "Dashboard";
+$bodyContent = "
+    <h2>{$title}</h2>
+    <p>Hello, you are logged in!</p>
+    <a href='/logout'>Logout</a>
+";
+
+$pageTemplate = new Template($title, $bodyContent);
+$pageTemplate->render();
