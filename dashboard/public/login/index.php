@@ -24,16 +24,33 @@ if (isset($_GET['login_action'])) {
 include '../Template.php';
 
 $title = "Login";
-$errorMessageHtmlString = $errorMessage ? "<p><b>{$errorMessage}></b></p>" : null;
+$errorMessageHtmlString = $errorMessage ? "<div class='invalid-feedback'>{$errorMessage}</div>" : null;
+$isInvalidClass = $errorMessage ? " is-invalid" : "";
+$bgStyle = "background-image: url(\"/img/jeremy-bishop-BuQ-jgeexaQ-unsplash_1920w.jpg\");background-size: cover;";
 $bodyContent = "
-    <h2>{$title}</h2>
-    {$errorMessageHtmlString}
-    <form action='?login_action=1' method='post'>
-        Access password<br>
-        <input type='password' size='40'  maxlength='250' name='password'><br>
-
-        <input type='submit' value='send'>
-    </form>
+    <div class='d-flex flex-grow-1 justify-content-center align-items-center' style='{$bgStyle}'>
+        <div class='container'>
+            <div class='card mb-3' style='max-width: 20rem;'>
+                <!--<div class='card-header'>Header</div>-->
+                <div class='card-body'>
+                    <h4 class='card-title mt-3'>{$title}</h4>
+                    <form action='?login_action=1' method='post'>
+                        <div class='form-group'>
+                            <label class='form-control-label' for='inputPassword'>Access password</label>
+                            <input type='password' name='password' class='form-control{$isInvalidClass}' id='inputPassword'>
+                            {$errorMessageHtmlString}
+                        </div>
+                        <div class='form-group'>
+                            <button type='submit' class='btn btn-primary btn-sm'>Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class='fixed-bottom p-3 text-right text-white'>
+        &copy; 2020 <span class='text-muted small'>CodeGewerk.</span>
+    </footer>
 ";
 
 $pageTemplate = new Template($title, $bodyContent);

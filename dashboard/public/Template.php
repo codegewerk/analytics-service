@@ -25,9 +25,17 @@ class Template
                     <title>{$this->title}</title>
                 </head>
                 <body>
-                    {$this->bodyContent}
+                    <div class='d-flex flex-column vw-100 min-vh-100'>
+                        <nav class='navbar navbar-expand-lg navbar-light bg-light fixed-top'>
+                            <a class='navbar-brand' href='/'>Analytics <small class='text-muted'>Service</small></a>
+                        </nav>
 
-                    <script src='/assets/theme.js'></script>
+                        <main class='d-flex flex-grow-1' style='margin-top:70px'>
+                            {$this->bodyContent}
+                        </main>
+
+                        <script src='/assets/theme.js'></script>
+                    </div>
                 </body>
             </html>
         ";

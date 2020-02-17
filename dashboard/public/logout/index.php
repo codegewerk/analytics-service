@@ -13,9 +13,11 @@ include '../Template.php';
 
 $title = "Logout";
 $bodyContent = "
-    <h2>{$title}</h2>
-    <p>Hello, your logout was successful!</p>
-    <a href='/'>Back to start</a>
+    <div class='container my-4'>
+        <h2>{$title}</h2>
+        <p>Hello, your logout was successful!</p>
+        <a href='/'>Back to start</a>
+    </div>
 ";
 
 $pageTemplate = new Template($title, $bodyContent);
